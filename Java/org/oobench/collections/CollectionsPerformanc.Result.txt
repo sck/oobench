@@ -1,0 +1,189 @@
+#########################################################################
+Using Client VM
+#########################################################################
+
+% /usr/local/linux-jdk1.3.0/bin/java -cp .:../03.Measurement.Is.Everything HashSetPerformance
+
+### Default: java.util.HashSet(101, 0.75f)
+*** Testing class java.util.HashSet
+add (500000): 6973 ms
+iter (500000): 278 ms 
+random (500000): 726 ms 
+remove (500000): 405 ms 
+
+###java.util.HashSet(101, 1f)
+*** Testing class java.util.HashSet
+add (500000): 4543 ms
+iter (500000): 235 ms 
+random (500000): 874 ms 
+remove (500000): 331 ms 
+
+###java.util.HashSet(500000, 0.75f)
+*** Testing class java.util.HashSet
+add (500000): 3534 ms
+iter (500000): 218 ms 
+random (500000): 677 ms 
+remove (500000): 320 ms 
+
+###java.util.HashSet(2, 0.1f)
+*** Testing class java.util.HashSet
+add (500000): 11634 ms
+iter (500000): 440 ms 
+random (500000): 3350 ms
+remove (500000): 484 ms 
+
+###java.util.HashSet(2, 1f)
+*** Testing class java.util.HashSet
+add (500000): 17615 ms
+iter (500000): 366 ms 
+random (500000): 712 ms 
+remove (500000): 303 ms 
+
+% /usr/local/linux-jdk1.3.0/bin/java -cp .:../03.Measurement.Is.Everything TreeSetPerformance
+
+###java.util.TreeSet()
+*** Testing class java.util.TreeSet
+add (500000): 11667 ms
+iter (500000): 273 ms 
+random (500000): 1795 ms
+remove (500000): 688 ms 
+
+% /usr/local/linux-jdk1.3.0/bin/java -cp .:../03.Measurement.Is.Everything VectorPerformance
+
+###java.util.Vector()
+*** Testing class java.util.Vector
+add (500000): 5632 ms
+iter (500000): 386 ms 
+random (500000): 79605000e ms
+remove (500000): 17220000e ms
+
+% /usr/local/linux-jdk1.3.0/bin/java -cp .:../03.Measurement.Is.Everything ArrayListPerformance
+
+###java.util.ArrayList()
+*** Testing class java.util.ArrayList
+add (500000): 5700 ms
+iter (500000): 388 ms 
+random (500000): 79335000e ms
+remove (500000): 17315000e ms
+
+% /usr/local/linux-jdk1.3.0/bin/java -cp .:../03.Measurement.Is.Everything LinkedListPerformance
+
+###java.util.LinkedList()
+*** Testing class java.util.LinkedList
+add (500000): 10917 ms
+iter (500000): 447 ms 
+random (500000): 122475000e ms
+remove (500000): 563 ms 
+
+% /usr/local/linux-jdk1.3.0/bin/java -cp .:../03.Measurement.Is.Everything HashMapPerformance
+
+###java.util.HashMap()
+*** Testing class java.util.HashMap
+add (500000): 6284 ms
+iter (500000): 258 ms 
+random (500000): 693 ms 
+remove (500000): 359 ms 
+
+% /usr/local/linux-jdk1.3.0/bin/java -cp .:../03.Measurement.Is.Everything TreeMapPerformance
+
+###java.util.TreeMap()
+*** Testing class java.util.TreeMap
+add (500000): 11933 ms
+iter (500000): 435 ms 
+random (500000): 1757 ms
+remove (500000): 679 ms 
+
+#########################################################################
+Using Server VM
+#########################################################################
+
+% /usr/local/linux-jdk1.3.0/bin/java -server -cp .:../03.Measurement.Is.Everything HashSetPerformance
+
+### Default: java.util.HashSet(101, 0.75f)
+*** Testing class java.util.HashSet
+add (500000): 7364 ms
+iter (500000): 339 ms 
+random (500000): 937 ms 
+remove (500000): 401 ms 
+
+###java.util.HashSet(101, 1f)
+*** Testing class java.util.HashSet
+add (500000): 4292 ms
+iter (500000): 214 ms 
+random (500000): 721 ms 
+remove (500000): 306 ms 
+
+###java.util.HashSet(500000, 0.75f)
+*** Testing class java.util.HashSet
+add (500000): 3408 ms
+iter (500000): 179 ms 
+random (500000): 551 ms 
+remove (500000): 260 ms 
+
+###java.util.HashSet(2, 0.1f)
+*** Testing class java.util.HashSet
+add (500000): 10741 ms
+iter (500000): 337 ms 
+random (500000): 3079 ms
+remove (500000): 420 ms 
+
+###java.util.HashSet(2, 1f)
+*** Testing class java.util.HashSet
+add (500000): 16330 ms
+iter (500000): 182 ms 
+random (500000): 553 ms 
+remove (500000): 274 ms 
+
+% /usr/local/linux-jdk1.3.0/bin/java -server -cp .:../03.Measurement.Is.Everything TreeSetPerformance
+
+###java.util.TreeSet()
+*** Testing class java.util.TreeSet
+add (500000): 10484 ms
+iter (500000): 355 ms 
+random (500000): 1285 ms
+remove (500000): 707 ms 
+
+% /usr/local/linux-jdk1.3.0/bin/java -server -cp .:../03.Measurement.Is.Everything VectorPerformance
+
+###java.util.Vector()
+*** Testing class java.util.Vector
+add (500000): 6369 ms
+iter (500000): 837 ms 
+random (500000): 57565000e ms
+remove (500000): 16685000e ms
+
+% /usr/local/linux-jdk1.3.0/bin/java -server -cp .:../03.Measurement.Is.Everything ArrayListPerformance
+
+###java.util.ArrayList()
+*** Testing class java.util.ArrayList
+add (500000): 6369 ms
+iter (500000): 630 ms 
+random (500000): 55390000e ms
+remove (500000): 16695000e ms
+
+% /usr/local/linux-jdk1.3.0/bin/java -server -cp .:../03.Measurement.Is.Everything LinkedListPerformance
+
+###java.util.LinkedList()
+*** Testing class java.util.LinkedList
+add (500000): 10858 ms
+iter (500000): 938 ms 
+random (500000): 84225000e ms
+remove (500000): 627 ms 
+
+% /usr/local/linux-jdk1.3.0/bin/java -server -cp .:../03.Measurement.Is.Everything TreeMapPerformance
+
+###java.util.TreeMap()
+*** Testing class java.util.TreeMap
+add (500000): 10444 ms
+iter (500000): 490 ms 
+random (500000): 1269 ms
+remove (500000): 703 ms 
+
+% /usr/local/linux-jdk1.3.0/bin/java -server -cp .:../03.Measurement.Is.Everything HashMapPerformance
+
+###java.util.HashMap()
+*** Testing class java.util.HashMap
+add (500000): 7067 ms
+iter (500000): 338 ms 
+random (500000): 940 ms 
+remove (500000): 395 ms 

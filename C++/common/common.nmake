@@ -1,0 +1,37 @@
+OBJ=.obj
+include config.mk
+#!include $(PROJECT_ROOT)\common\config.mk
+!include $(PROJECT_ROOT)\common\common.mk
+
+OPTIMIZATION=-O2
+OSFLAG=-D__WINDOWS__
+CFLAGS= -nologo $(OSFLAG) -GX $(OPTIMIZATION) \
+	-I$(PROJECT_ROOT)/common $(LOCAL_CFLAGS)
+LDFLAGS= $(LOCAL_LDFLAGS)
+LIBS= $(LOCAL_LIBS)
+
+all: $(TARGET)
+
+.SUFFIXES: .cpp
+
+{common\}.cpp{common\}.obj:
+	$(CXX) $(CFLAGS) -c -Fo$@ -c $<
+
+{$S}.cpp{$O}.obj:
+	$(CXX) $(CFLAGS) -c -Fo$(O) -c $<
+
+bench:: $(TARGET)
+	-@.\$(TARGET)
+
+test:: $(TARGET)
+	-@.\$(TARGET) -t
+
+$(TARGET): $(OFILES) $(LOCAL_OFILES)
+	$(CXX) $(CFLAGS) $(LDFLAGS) -o $(TARGET) $(OFILES) \
+	$(LOCAL_OFILES) $(LIBS) 
+
+clean::
+	-del /Q *.bin.exe *.obj *.pdb 2>NUL
+
+distclean:: clean
+

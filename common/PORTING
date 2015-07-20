@@ -1,0 +1,44 @@
+Some Rough Guidelines for Porting OO Bench to other Programming Languages
+=========================================================================
+
+[Any feedback to these guidelines, be it good or bad, is very welcome!]
+
+1. Measure time correctly
+
+    To be compatible with the other language's benchmarks, always measure
+    time as is, not the actual user time (like UNIX offers).  This
+    requires systems to be otherwise idle when executing the benchmarks.
+    (Also read README in OO Bench's root directory on measuring time
+    correctly.)
+
+2. Be as precise as possible 
+
+    Always keep in mind that it should be easy for programmers that are
+    familiar with one source version of the benchmark to read other
+    language's version, and i.e. see how a kind paradigm is implemented
+    in another language.  So try to name variables, methods, classes,
+    files as similar to other languages as possible.
+
+3. Use coding conventions
+
+    Try to strictly follow the coding conventions of your language, be as
+    native to the language as possible.  I. e.: In Java that meant also to
+    use ant (that's not finished yet completely) instead of
+    GNU-make, since ant is far more popular there.  This can also mean,
+    that you need to name methods different (and thus violating guideline
+    1), as in Objective-C methods that just return a reference to another
+    object usually are not called "getObject", whereas in Java and C++
+    they usually would.
+
+4. Stick to OO Conventions
+
+    I. e. don't make variables public, instead make them private and write
+    accessors for them, although that might hurt performance.
+
+5. When in doubt, prefer good design to speed of execution
+
+    Be honest. :-) Don't try to "improve" the speed of your benchmark by
+    using constructs that are otherwise not commonly recommended in your
+    language.
+
+6. As with XP: If any of these guidelines break, fix it. :-)

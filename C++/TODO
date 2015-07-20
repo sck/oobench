@@ -1,0 +1,3 @@
+
+- Check, whether const can be applied to functions not altering the state
+  of an object.

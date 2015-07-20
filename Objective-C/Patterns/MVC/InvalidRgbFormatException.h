@@ -1,0 +1,2 @@
+@interface InvalidRgbFormatException : NSException
+@end

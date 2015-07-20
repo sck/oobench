@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE project [ 
+    <!ENTITY common SYSTEM "file:../org/oobench/common/ant.common.xml"> 
+]>
+
+<project name="Documentation" default="doc" basedir=".">
+
+    <target name="init" depends="org.oobench.common.init">
+        <property name="package.root" value=".."/>
+    </target>
+
+    <target name="doc" depends="init">
+        <mkdir dir="${package.root}/doc/html"/>
+        <javadoc packagenames="org.oobench.*" 
+                classpath="${common.classpath}:${default.ejb.classes};${ant.classes}"
+                sourcepath="${package.root}"
+                destdir="${package.root}/doc/html"
+                windowtitle="OO Bench API"
+                bottom="Copyright &#169; 2002 Sven C. Koehler.  All Rights Reserved.">
+            <group title="OO Bench" packages="org.oobench.*"/>
+        </javadoc>
+    </target>
+
+    &common;
+
+</project>

@@ -1,0 +1,3 @@
+- concurrency: volatile vs. synchronized vs. no synchronization at all
+  vs. handcrafted.
+- ThreadLocal vs direct access.

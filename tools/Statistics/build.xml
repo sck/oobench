@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<project name="Statistics" default="build" basedir=".">
+
+    <target name="build">
+        <javac srcdir="." classpath="." debug="off"/>
+    </target>
+
+    <target name="clean">
+        <delete>
+            <fileset dir=".">
+                <include name="*.class"/>
+            </fileset>
+        </delete>
+    </target>
+
+</project>

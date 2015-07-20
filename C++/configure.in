@@ -1,0 +1,48 @@
+AC_INIT(${srcdir}/common/config.mk.in)
+
+AC_CONFIG_HEADER(common/config.h)
+
+AC_PROG_CC
+AC_SUBST(CC)
+
+AC_PROG_CXX
+AC_SUBST(CXX)
+
+AC_CHECK_PTHREADS_WORK
+PTHREADS_WORK=$ac_cv_pthreads_work
+AC_SUBST(PTHREADS_WORK)
+PTHREADS_CC_FLAGS=$ac_cv_pthreads_cc_flags
+AC_SUBST(PTHREADS_CC_FLAGS)
+PTHREADS_CC_LIBS=$ac_cv_pthreads_cc_libs
+AC_SUBST(PTHREADS_CC_LIBS)
+
+AC_CHECK_LINUX_THREADS
+LINUX_THREADS=$ac_cv_linux_threads
+AC_SUBST(LINUX_THREADS)
+LINUX_THREADS_CFLAGS=$ac_cv_linux_threads_cflags
+AC_SUBST(LINUX_THREADS_CFLAGS)
+LINUX_THREADS_LDFLAGS=$ac_cv_linux_threads_ldflags
+AC_SUBST(LINUX_THREADS_LDFLAGS)
+LINUX_THREADS_LIBS=$ac_cv_linux_threads_libs
+AC_SUBST(LINUX_THREADS_LIBS)
+
+AC_CHECK_FCNTL_O_ASYNC
+if test $ac_cv_fcntl_o_async = yes; then
+    AC_DEFINE(HAVE_O_ASYNC)
+fi
+
+AC_CHECK_FCNTL_FASYNC
+if test $ac_cv_fcntl_fasync = yes; then
+    AC_DEFINE(HAVE_FASYNC)
+fi
+
+AC_CHECK_OSTRINGSTREAM
+if test $ac_cv_ostringstream = yes; then
+    AC_DEFINE(HAVE_OSTRINGSTREAM)
+fi
+AC_CHECK_OSTRSTREAM
+if test $ac_cv_ostrstream = yes; then
+    AC_DEFINE(HAVE_OSTRSTREAM)
+fi
+
+AC_OUTPUT(common/config.mk)

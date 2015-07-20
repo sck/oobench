@@ -1,0 +1,21 @@
+    <target name="build">
+        <antcall target="sub">
+            <param name="subtarget" value="build"/>
+        </antcall>
+    </target>
+    <target name="clean">
+        <antcall target="sub">
+            <param name="subtarget" value="clean"/>
+        </antcall>
+    </target>
+    <target name="bench">
+        <antcall target="sub">
+            <param name="subtarget" value="bench"/>
+        </antcall>
+    </target>
+    <target name="test">
+        <antcall target="sub">
+            <param name="subtarget" value="test"/>
+        </antcall>
+    </target>
+

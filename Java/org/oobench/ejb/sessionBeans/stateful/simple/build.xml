@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE project [ 
+    <!ENTITY ejb.common SYSTEM "file:../../../common/ant.common.xml"> 
+    <!ENTITY common SYSTEM "file:../../../../common/ant.common.xml"> 
+]>
+
+<project name="SimpleBench" default="buildMyEAR" basedir=".">
+
+    <target name="init" depends="org.oobench.ejb.common.init">
+        <property name="package.root" value="../../../../../.."/>
+        <property name="ejbjar.build.excludes"
+                value="SimplePerformance.class"/>
+        <property name="package.root" value="../../../../../.."/>
+        <property name="build.includes" value="SimplePerformance.java"/>
+        <property name="build.excludes" value="*.java"/>
+        <property name="build.classpath" 
+                value="${default.ejb.classes}"/>
+    </target>
+
+    <target name="buildMyEAR" depends="init,ear,build">
+    </target>
+
+    &ejb.common;
+    &common;
+
+</project>

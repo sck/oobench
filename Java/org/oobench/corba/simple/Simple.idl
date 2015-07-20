@@ -1,0 +1,4 @@
+interface Simple
+{
+    long incrementCounter(in long counter);
+};

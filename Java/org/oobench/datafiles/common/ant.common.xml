@@ -1,0 +1,9 @@
+    <target name="org.oobench.datafiles.common.build">
+        <javac srcdir="${package.root}/org/oobench/datafiles/common/"
+                classpath="${common.classpath}:${package.root}"
+                debug="on"
+                deprecation="on"
+                optimize="off"
+                includes=""
+        />
+    </target>

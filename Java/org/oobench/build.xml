@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE project [ 
+    <!ENTITY common.subdirs SYSTEM "file:common/ant.subdirs.common.xml"> 
+]>
+
+<project name="forwarder" default="build" basedir=".">
+
+    &common.subdirs;    
+
+    <target name="sub">
+	<ant dir="patterns" target="${subtarget}"/>
+        <ant dir="collections" target="${subtarget}"/>
+        <ant dir="exceptions" target="${subtarget}"/>
+        <ant dir="io" target="${subtarget}"/>
+        <ant dir="messages" target="${subtarget}"/>
+        <!-- <ant dir="rmi" target="${subtarget}"/> -->
+        <ant dir="serialization" target="${subtarget}"/>
+        <ant dir="threads" target="${subtarget}"/>
+        <ant dir="numerics" target="${subtarget}"/>
+    </target>
+</project>

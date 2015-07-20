@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE project [ 
+    <!ENTITY common SYSTEM "file:../../common/ant.common.xml"> 
+]>
+
+<project name="Proxy" default="build" basedir=".">
+
+    <target name="init" depends="org.oobench.common.init">
+        <property name="package.root" value="../../../.."/>
+    </target>
+
+    &common;
+
+</project>

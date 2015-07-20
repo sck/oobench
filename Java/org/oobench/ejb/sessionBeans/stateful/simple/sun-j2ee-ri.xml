@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO8859_1"?>
+
+<j2ee-ri-specific-information>
+  <server-name></server-name>
+  <rolemapping />
+  <enterprise-beans>
+    <ejb>
+      <ejb-name>SimpleBench</ejb-name>
+      <jndi-name>SimpleBench</jndi-name>
+    </ejb>
+  </enterprise-beans>
+</j2ee-ri-specific-information>

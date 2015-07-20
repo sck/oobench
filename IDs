@@ -1,0 +1,72 @@
+# Description: This file is used to store the benchmark IDs.  If you want
+# to write a new benchmark, look for a free number here, and reserve it
+# along with a very brief description, fitting into one line.
+#
+# (major number).(minor number).(sub number)
+
+1       Data structures benchmarks
+1.1     Vector
+1.2     List
+1.3     Map
+1.4     Set
+1.5     Array List (Java only)
+1.6     Tree Map (Java only)
+1.7     Tree Set (Java only)
+1.8     Strings
+
+2       C++ Algorithm Benchmarks
+2.1     Function Object
+2.2     Without Function Object
+2.3     Algorithms 
+
+3       Exceptions
+3.1     Without Exceptions
+3.2     With Exceptions 
+
+4       IO Benchmarks
+4.1     Small Files
+4.2     Large Files
+
+5       Messaging
+5.1     Simple
+
+6       Threads
+6.1     Thread Creation
+
+7       Thread Contention
+
+8       Patterns
+8.1     MVC Pattern 
+8.2     Proxy
+8.3     Flyweight
+
+9       Sorting
+9.1     Array List
+9.2     Hash Set
+9.3     Linked List
+9.4     Tree Map
+9.5     Tree Set
+9.6     Hash Map
+9.7     Array
+
+10      Object Persistence
+10.1    One Object
+10.2    Complex Object Tree
+
+11      Class Loading
+11.1    Normal
+11.2    Jars
+11.3    Signed Jars
+
+12      RMI
+12.1    Simple
+12.2    Simple SSL
+
+13      CORBA
+13.1    Simple
+
+14      EJB
+14.1    Session Stateful Simple
+
+15      Numerics
+15.1    Gaussian Rand (Box-Muller Transform)

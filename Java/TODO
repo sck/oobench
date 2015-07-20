@@ -1,0 +1,2 @@
+- Use <ant dir="subproject"/> instead of $(MAKE) -C subproject
+- Use Synchronized List instead of Vector

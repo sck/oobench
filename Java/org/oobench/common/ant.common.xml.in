@@ -1,0 +1,80 @@
+<!-- 
+    Please edit ant.common.xml.in to apply permanent changes,
+    since ant.common.xml will be overwritten by configure.
+-->
+    <target name="org.oobench.common.init">
+        <echo message="Building project: ${ant.project.name}"/>
+        <echo message="java.home = ${java.home}"/>
+        <echo message="java.class.path = ${java.class.path}"/>
+        <property name="src.dir" value="${basedir}"/>
+        <property name="build.includes" value=""/>
+        <property name="build.excludes" value=""/>
+        <property name="common.classpath" value="${classpath}"/>
+
+        <property name="default.application.server"
+                value="@AS_SERVER@"/>
+        <property name="default.ejb.classes" 
+                value="@EJB_CLASSES@"/>
+        <property name="default.application.server.root"
+                value="@AS_SERVER_ROOT@"/>
+
+        <property name="application.server.jboss.root"
+                value="@JBOSS_ROOT@"/>
+        <property name="application.server.jboss.classes"
+                value="@JBOSS_CLASSES@"/>
+
+        <property name="application.server.weblogic.root"
+                value="@WEBLOGIC_ROOT@"/>
+        <property name="application.server.weblogic.classes"
+                value="@WEBLOGIC_CLASSES@"/>
+
+        <property name="application.server.dynamo.root"
+                value="@DYNAMO_ROOT@"/>
+        <property name="application.server.dynamo.classes"
+                value="@DYNAMO_CLASSES@"/>
+
+        <property name="application.server.orion.root"
+                value="@ORION_ROOT@"/>
+        <property name="application.server.orion.classes"
+                value="@ORION_CLASSES@"/>
+
+        <property name="application.server.j2sdkee.root"
+                value="@J2SDKEE_ROOT@"/>
+        <property name="application.server.j2sdkee.classes"
+                value="@J2SDKEE_CLASSES@"/>
+
+        <property name="ant.classes" value="@ANT_CLASSES@"/>
+        <property name="tools.jar" value="@TOOLS_JAR@"/>
+
+        <property name="perl.present" value="@PERL_PRESENT@"/>
+        <property name="perl.path" value="@PERL@"/>
+
+        <property name="junit.present" value="@JUNIT_PRESENT@"/>
+        <property name="junit.classes" value="@JUNIT_CLASSES@"/>
+
+        <property name="idlj.path" value="@JAVA13_BIN@/idlj"/>
+
+        <available property="ssl.present" 
+                classname="java.rmi.RemoteException"/>
+    </target>
+
+    <target name="org.oobench.common.build" depends="init">
+        <javac srcdir="${package.root}/org/oobench/common/"
+                classpath="${common.classpath}:${package.root}"
+                debug="on"
+                deprecation="on"
+                optimize="off"
+                includes=""
+        />
+    </target>
+
+    <target name="build" depends="org.oobench.common.build">
+        <javac srcdir="${src.dir}"
+                classpath="${build.classpath}:${package.root}"
+                includes="${build.includes}"
+                excludes="${build.excludes}"
+                debug="on"
+                deprecation="off"
+                optimize="off"
+        />
+    </target>

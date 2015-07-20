@@ -1,0 +1,14 @@
+OBJ=.o
+include config.mk
+include $(PROJECT_ROOT)/common/config.mk
+include $(PROJECT_ROOT)/common/common.mk
+
+$(SUPPORTED_TARGETS)::
+	-@for i in $(SUBTARGETS); do \
+			echo "$${i}: $@"; \
+			$(MAKE) --no-print-directory -f \
+			$(PROJECT_ROOT)/common/common.gmake \
+			OFILES=$${i}.o TARGET=$${i}.bin \
+			"LOCAL_CFLAGS=$(LOCAL_CFLAGS)" \
+			"LOCAL_OFILES=$(LOCAL_OFILES)" $@; \
+		done

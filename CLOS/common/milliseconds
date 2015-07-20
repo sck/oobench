@@ -1,0 +1,3 @@
+#! /bin/sh
+
+lisp -load $0.lisp

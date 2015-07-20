@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE project [ 
+    <!ENTITY corba.common SYSTEM "file:../common/ant.common.xml"> 
+    <!ENTITY common SYSTEM "file:../../common/ant.common.xml"> 
+]>
+
+<project name="Simple" default="idlbuild" basedir=".">
+
+    <target name="init" depends="org.oobench.corba.common.init">
+        <property name="package.root" value="../../../.."/>
+    </target>
+    
+    <target name="idlj">
+        <idlj file="Simple.idl" 
+                pkgPrefix="Simple org.oobench.corba.simple"
+                toDirectory=".tmp.idlj" options="-fall"/>
+    </target>
+
+    <target name="idlbuild"
+            depends="init,org.oobench.corba.common.build,idlj,build"/>
+        
+    &corba.common;
+    &common;
+
+</project>

@@ -1,0 +1,26 @@
+#! /bin/sh
+
+T=`dirname $0`
+DIR=`cd $T; pwd`
+
+PROJECT_ROOT=$DIR/../../Java
+CONFIG_SH=$PROJECT_ROOT/org/oobench/common/config.sh
+
+if ! test -f $CONFIG_SH; then
+    (
+        cd $PROJECT_ROOT
+        test -f ./localConf.sh && sh ./localConf.sh || ./configure
+    )
+fi
+
+. $CONFIG_SH
+
+if ! test -f $DIR/Statistics.class; then
+    (
+        cd $DIR
+        $ANT
+    )
+fi
+
+
+$JAVA13 -Dprogram.name="$0" -cp $DIR Statistics ${1+"$@"}

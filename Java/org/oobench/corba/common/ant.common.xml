@@ -1,0 +1,24 @@
+    <target name="org.oobench.corba.common.init" 
+            depends="org.oobench.common.init">
+        <property name="idlj.build.dir" value="${basedir}/.tmp.idlj"/>
+    </target>
+
+    <target name="org.oobench.corba.common.build"
+            depends="org.oobench.corba.common.buildTaskDefs"/>
+
+    <target name="org.oobench.corba.common.buildTaskDefs">
+        <mkdir dir="${idlj.build.dir}"/>
+        <javac srcdir="${package.root}/org/oobench/corba/common/"
+                classpath="${common.classpath}:${ant.classes}:${package.root}"
+                debug="on"
+                deprecation="on"
+                optimize="off"
+                includes=""
+        />
+        <taskdef name="idlj" 
+                classname="org.oobench.corba.common.taskdefs.Idlj">
+            <classpath>
+                <pathelement path="${package.root}"/>
+            </classpath>
+        </taskdef>
+    </target>

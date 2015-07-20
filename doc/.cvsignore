@@ -1,0 +1,13 @@
+*.aux
+*.dvi
+*.ps
+*.pdf
+*.toc
+*.log
+*.css
+*.html
+*.txt
+.xvpics
+*.eps
+*.jpg
+*.xcf.bz2

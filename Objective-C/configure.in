@@ -1,0 +1,57 @@
+AC_INIT(${srcdir}/common/config.mk.in)
+
+AC_CONFIG_HEADER(common/config.h)
+
+AC_FIND_RUNTIME
+
+OBJC_LIBS=$ac_cv_objc_libs
+AC_SUBST(CC)
+AC_SUBST(OBJC_LIBS)
+
+#
+# Foundation.
+#
+AC_ARG_WITH(foundation,[
+--with-foundation=<DIR>
+    Path to Foundation library's root directory.],
+ac_foundation_root=${withval},)
+AC_FIND_FOUNDATION_LIB
+if test $ac_cv_foundation_present = no; then
+    AC_MSG_ERROR([No Foundation library present.  Stop.
+--> Supply path to Foundation's root directory via configure's 
+    --with-foundation=<DIR> parameter.  
+    A free implementation of the Foundation library is libFoundation,
+    available from http://www.sourceforge.net/projects/libFoundation/.])
+fi
+
+FOUNDATION_PRESENT=$ac_cv_foundation_present
+AC_SUBST(FOUNDATION_PRESENT)
+FOUNDATION_LIB=$ac_cv_foundation_lib_path
+AC_SUBST(FOUNDATION_LIB)
+FOUNDATION_LIBS=$ac_cv_foundation_libs
+AC_SUBST(FOUNDATION_LIBS)
+FOUNDATION_INCLUDE=$ac_cv_foundation_include_path
+AC_SUBST(FOUNDATION_INCLUDE)
+LIB_FOUNDATION_RESOURCES_PATH=$ac_cv_lib_foundation_resources_path
+AC_SUBST(LIB_FOUNDATION_RESOURCES_PATH)
+MACOSX_FOUNDATION_PRESENT=$ac_cv_macosx_foundation_present
+AC_SUBST(MACOSX_FOUNDATION_PRESENT)
+
+#
+# Garbage Collection.
+#
+AC_ARG_WITH(autoreleasepools,[
+--with-autoreleasepools=<YES|NO>
+    Default is YES.],
+ac_autoreleasepools=${withval},)
+
+if test "X$ac_autoreleasepools" = "X"; then
+    ac_autoreleasepools=YES
+fi
+
+if test "$ac_autoreleasepools" = "YES"; then
+    AC_DEFINE(OOB_USE_AUTORELEASE_POOLS)
+fi
+
+AC_OUTPUT(common/config.mk 
+        common/config.sh)

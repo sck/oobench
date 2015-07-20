@@ -1,0 +1,2 @@
+- Since optimization is had to be disabled, the test runs as twice as
+  slow as it could with -O2.

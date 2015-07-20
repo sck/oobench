@@ -1,0 +1,12 @@
+#ifndef __config_h__
+#define __config_h__
+
+#undef HAVE_O_ASYNC
+
+#undef HAVE_FASYNC
+
+#undef HAVE_OSTRINGSTREAM
+
+#undef HAVE_OSTRSTREAM
+
+#endif

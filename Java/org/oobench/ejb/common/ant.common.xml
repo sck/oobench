@@ -1,0 +1,74 @@
+    <target name="org.oobench.ejb.common.init" 
+            depends="org.oobench.common.init">
+        <property name="src.dir" value="${basedir}"/>
+        <property name="ejbjar.build.dir"
+                value="${basedir}/.tmp.build.jar"/>
+        <property name="ear.build.dir" value="${basedir}/.tmp.build.ear"/>
+        <property name="ejbjar.build.includes" value=""/>
+        <property name="ejbjar.build.excludes" value=""/>
+        <property name="ejbjar.file" value="${ant.project.name}-ejb.jar"/>
+        <property name="ear.file" value="${ant.project.name}.ear"/>
+        <property name="build.includes" value=""/>
+        <property name="build.excludes" value=""/>
+    </target>
+
+    <target name="org.oobench.ejb.common.buildTaskdefs">
+        <javac srcdir="${package.root}/org/oobench/ejb/common/"
+                classpath="${common.classpath}:${package.root}:
+                ${junit.classes}"
+                debug="on"
+                deprecation="off"
+                optimize="off"
+                includes=""
+        />
+        <taskdef name="deploy" 
+                classname="org.oobench.ejb.common.deploy.DeployFactory"
+                classpath="${package.root}"/>
+    </target>
+
+    <target name="deploy" depends="init,
+            org.oobench.ejb.common.buildTaskdefs,ear">
+        <deploy sourceJar="${ear.file}" 
+                targetAS="${default.application.server}"
+                targetASdir="${default.application.server.root}"
+                />
+    </target>
+
+    <target name="buildEJBJar" depends="org.oobench.ejb.common.buildTaskdefs">
+        <mkdir dir="${ejbjar.build.dir}"/>
+        <javac srcdir="${src.dir}"
+                destdir="${ejbjar.build.dir}"
+                classpath="${classpath}:${default.ejb.classes}:
+                ${package.root}"
+                excludes="${ejbjar.build.excludes}"
+                debug="on"
+                deprecation="off"
+                optimize="off"
+                includes="${ejbjar.build.includes}"
+        />
+        <mkdir dir="${ejbjar.build.dir}/META-INF"/>
+        <copy file="${src.dir}/ejb-jar.xml" 
+                todir="${ejbjar.build.dir}/META-INF"
+                overwrite="true"/>
+        <copy file="${src.dir}/weblogic-ejb-jar.xml" 
+                todir="${ejbjar.build.dir}/META-INF"
+                overwrite="true"/>
+    </target>
+
+    <target name="ejbjar" depends="buildEJBJar">
+        <jar jarfile="${ejbjar.file}" basedir="${ejbjar.build.dir}"/>
+    </target>
+
+    <target name="ear" depends="ejbjar">
+        <mkdir dir="${ear.build.dir}"/>
+        <mkdir dir="${ear.build.dir}/META-INF"/>
+        <copy file="${src.dir}/application.xml" 
+                todir="${ear.build.dir}/META-INF"
+                overwrite="true"/>
+        <copy file="${src.dir}/sun-j2ee-ri.xml" 
+                todir="${ear.build.dir}/META-INF"
+                overwrite="true"/>
+        <copy file="${ejbjar.file}" todir="${ear.build.dir}"
+                overwrite="true"/>
+        <jar jarfile="${ear.file}" basedir="${ear.build.dir}"/>
+    </target>

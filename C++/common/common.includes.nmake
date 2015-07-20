@@ -1,0 +1,14 @@
+OBJ=.obj
+!include config.mk
+!include $(PROJECT_ROOT)\common\config.mk
+!include $(PROJECT_ROOT)\common\common.mk
+
+first:: all
+
+$(SUPPORTED_TARGETS)::
+	-@for %i in ( $(SUBTARGETS) ) do \
+		$(MAKE) -nologo -f \
+		$(PROJECT_ROOT)\common\common.nmake \
+		OFILES=%i.obj TARGET=%i.bin.exe \
+		LOCAL_CFLAGS="$(LOCAL_CFLAGS)" \
+		LOCAL_OFILES="$(LOCAL_OFILES)" $@

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE project [ 
+    <!ENTITY common.subdirs SYSTEM "file:../common/ant.subdirs.common.xml"> 
+]>
+
+<project name="forwarder" default="build" basedir=".">
+
+    &common.subdirs;    
+
+    <target name="sub">
+        <ant dir="simple" target="${subtarget}"/>
+    </target>
+</project>

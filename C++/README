@@ -1,0 +1,36 @@
+C++ Benchmarks README
+=====================
+
+INDEX
+=====
+
+1  Running C++ Benchmarks: Recommended Prerequisites
+2  Coding Conventions
+A  C++ Resources
+
+1  Running C++ Benchmarks: Recommended Prerequisites
+====================================================
+
+GCC
+===
+
+All the benchmarks were developed to at least work with GCC-2.95.2, and
+GCC-3.0.2.  GCC is available at http://www.gcc.org/.
+
+2  Coding Conventions
+=====================
+
+Coding conventions are oriented on the conventions described in the
+Stroustrup book, except the ones that the author disliked, namely:
+instead of using underscores to separate words of names, the first
+letters are capitalized (like done in Java), the same applies to template
+arguments, that are usually named more verbosely than in the Stroustrup
+book, to get a better grasp of their meaning.
+
+A  C++ Resources
+================
+
+The following books/resources were used during writing of the benchmarks:
+
+    "The C++ Programming Language", by Bjarne Stroustrup;
+    "Guru of the Week", by Herb Sutter, http://www.gotw.ca/.

@@ -1,0 +1,2 @@
+@interface ControllerEvent: NSObject
+@end

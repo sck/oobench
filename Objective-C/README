@@ -1,0 +1,40 @@
+Objective-C Benchmarks README
+=============================
+
+INDEX
+=====
+
+1  Running Objective-C Benchmarks: Recommended Prerequisites
+2  Coding Conventions
+A  Objective-C Resources
+
+
+1  Running Objective-C Benchmarks: Recommended Prerequisites
+============================================================
+
+Foundation Library
+==================
+
+As Foundation library, libFoundation is recommended, available from 
+http://www.sourceforge.net/projects/libFoundation/; recommended version
+is 0.9.0.
+
+Note for SuSE-7.2: When making libFoundation, it needed to be compiled as
+a static library, otherwise there where linking errors during compilation
+of Objective-C programs that used libFoundation.
+
+2  Coding Conventions
+=====================
+
+Coding conventions used for the benchmarks are based on the example code
+in the Cox book, and the libFoundation's source code.
+
+A  Objective-C Resources
+========================
+
+The following books/resources were used during writing of the benchmarks:
+
+    "Object-Oriented Programming--An Evolutionary Approach", by Brad Cox;
+    "The Foundation Framework", by Apple Computer, Inc.,
+        http://developer.apple.com/techpubs/macosx/Cocoa/Reference/Foundation/ObjC_classic/IntroFoundation.html;
+    "NEXTSTEP OOP-Manual", by NeXT.

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE project [ 
+    <!ENTITY common SYSTEM "file:../common/ant.common.xml"> 
+]>
+
+<project name="RMI" default="rmibuild" basedir=".">
+
+    <target name="init" depends="org.oobench.common.init">
+        <property name="package.root" value="../../.."/>
+    </target>
+
+    &common;
+
+    <target name="rmic">
+        <rmic classname="org.oobench.rmi.Server" 
+                stubversion="1.2" base="${package.root}"/>
+        <rmic classname="org.oobench.rmi.ssl.SSLServer" 
+                stubversion="1.2" base="${package.root}"/>
+    </target>
+
+    <target name="rmibuild" depends="build,rmic">
+    </target>
+
+</project>

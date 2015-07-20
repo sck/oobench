@@ -1,0 +1,34 @@
+[2002-08-25: OO Bench 0.5.0 released]
+
+NEW MAJOR FEATURES/IMPROVEMENTS:
+
+* Reviewed, and improved all the benchmarks;
+* Added ISO C++ algorithm benchmarks.
+
+IMPROVEMENTS:
+
+[2001-11-21: OO Bench 0.0.2 released]
+
+NEW MAJOR FEATURES:
+
+* Benchmarks have now an ID, to identify benchmarks that are semantically
+  equal across languages.  Automated evaluation of results is still to do. 
+
+* Added pattern benchmarks: MVC, Proxy (only for: ObjC, Java), 
+  Flyweight (only for C++).
+
+IMPROVEMENTS:
+
+* Lots of bug fixes and reorganizations. 
+
+* Lots of adjustments to make code work on various Linux and Solaris
+  boxes.
+
+* EJB benchmark should now work at least with JBoss (other EASes are
+  detected as well, but some things need still to be done by hand).
+
+
+
+[2001-09-21: OO Bench 0.0.1 released]
+
+Initial release.

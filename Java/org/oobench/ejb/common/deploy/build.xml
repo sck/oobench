@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<project name="Deploy" default="build" basedir=".">
+    <target name="init">
+        <property name="package.root" value="../../../../.."/>
+
+        <echo message="Building project: ${ant.project.name}"/>
+        <echo message="java.home = ${java.home}"/>
+        <echo message="user.home = ${user.home}"/>
+        <echo message="java.class.path = ${java.class.path}"/>
+        <echo message=""/>
+
+        <property name="src.dir" value="${basedir}"/>
+        <property name="classpath" value="${package.root}:
+                /usr/home/schween/local/ant/lib/ant-1.3.jar:
+                /usr/local/jboss/dist/lib/ext/ejb.jar:
+                /usr/local/jboss/dist/lib/ext/jndi.jar"/>
+    </target>
+
+    <target name="build" depends="init">
+        <javac srcdir="${src.dir}"
+                classpath="${classpath}"
+                debug="on"
+                deprecation="off"
+                optimize="off"
+                includes=""
+        />
+    </target>
+
+    <target name="clean" depends="init">
+        <delete dir="." includes="*.class"/>
+    </target>
+
+    <target name="test" depends="init">
+        <java classname="org.oobench.ejb.common.deploy.FileUtilsTest"
+                classpath="${classpath}"/>
+    </target>
+
+</project>
+

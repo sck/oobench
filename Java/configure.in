@@ -1,0 +1,247 @@
+AC_INIT(${srcdir}/org/oobench/common/config.sh.in)
+
+#
+# JUnit.
+#
+AC_ARG_WITH(junit,
+[  --with-junit=<PATH>     set path to JUnit classes/JAR file (guessed)],
+[
+    JUNIT_CLASSES=${withval}
+    JUNIT_PRESENT=yes
+],[
+    JUNIT_CLASSES=
+    JUNIT_PRESENT=
+])
+if test "x$JUNIT_PRESENT" != "xyes"; then
+    echo "JUnit is not present.  Unit tests are disabled.
+--> Supply path to JUnit's classes via configure's --with-junit=<PATH>
+    parameter.  JUnit is available from http://www.junit.org/.
+    NOTE: It might be, that JUnit is installed in your JDK's lib/ext
+    directory.  In that case, you can ignore this message, tests will
+    work."
+fi
+AC_SUBST(JUNIT_CLASSES)
+AC_SUBST(JUNIT_PRESENT)
+
+#
+# Perl.
+#
+AC_ARG_WITH(perl,
+[  --with-perl=<PATH>      set path to perl (guessed)],
+ac_cv_perl=${withval},)
+AC_CHECK_PERL
+if test $ac_cv_perl = no; then
+    PERL_PRESENT=
+    echo "Perl is not present.  Some tests are disabled.
+--> Supply path to Perl via configure's --with-perl=<PATH>
+    parameter.  Perl is available from http://www.perl.com/."
+else
+    PERL_PRESENT=yes
+fi
+PERL=$ac_cv_perl
+AC_SUBST(PERL)
+AC_SUBST(PERL_PRESENT)
+
+#
+# JDK-1.2 and JDK-1.2.
+#
+AC_ARG_WITH(jdk12,
+[  --with-jdk12=<DIR>      set JDK-1.2 home directory (guessed)],
+ac_cv_jdk12_bin=${withval}/bin,)
+AC_ARG_WITH(jdk13,
+[  --with-jdk13=<DIR>      set the JDK-1.3 home directory (guessed)],
+ac_cv_jdk13_bin=${withval}/bin,)
+AC_CHECK_JAVA12_BIN
+AC_CHECK_JAVA13_BIN
+if test $ac_cv_jdk13_bin = no; then
+    AC_MSG_ERROR([JDK-1.3 is not present.  Stop.
+--> Supply path to JDK-1.3 via configure's --with-jdk13=<DIR>
+    parameter.  JDK-1.3 is available from http://java.sun.com/.])
+fi
+TOOLS_JAR=$ac_cv_tools_jar
+AC_SUBST(TOOLS_JAR)
+JAVA13_BIN=$ac_cv_jdk13_bin
+JAVA12_BIN=$ac_cv_jdk12_bin
+AC_MSG_CHECKING(whether fallback for JDK-1.2 is needed)
+if test $JAVA13_BIN != no && test $JAVA12_BIN = no; then
+    JAVA12_BIN=$JAVA13_BIN
+    AC_MSG_RESULT(using JDK-1.3 instead)
+    echo "--> Hint: Use configure's --with-jdk12=<DIR> parameter."
+else
+    AC_MSG_RESULT(no)
+fi
+AC_SUBST(JAVA12_BIN)
+AC_SUBST(JAVA13_BIN)
+
+#
+# Ant.
+#
+AC_ARG_WITH(ant,
+[  --with-ant=<DIR>        set the ant home directory (guessed)],
+ac_cv_ant=${withval}/bin/ant,)
+AC_CHECK_ANT
+if test $ac_cv_ant = no; then
+    AC_MSG_ERROR([Ant not present.  Stop.
+--> Supply path to ant's home directory via configure's --with-ant=<DIR>
+    parameter.  Ant is available from http://jakarta.apache.org/ant/.])
+fi
+ANT=$ac_cv_ant
+ANT_CLASSES=$ac_cv_ant_classes
+AC_SUBST(ANT)
+AC_SUBST(ANT_CLASSES)
+
+
+# ----------------------------------------------------------------------- 
+# Looking for application servers.
+# ----------------------------------------------------------------------- 
+AS_SERVER=no
+AC_SUBST(AS_SERVER)
+AC_SUBST(AS_SERVER_ROOT)
+AC_SUBST(EJB_CLASSES)
+
+#
+# J2SDKEE.
+#
+AC_ARG_WITH(j2sdkee,
+[  --with-j2sdkee=<DIR>    set the J2SDKEE root directory (guessed)],
+[
+    ac_cv_j2sdkee_root=${withval}
+    PREFERRED_AS=J2SDKEE
+],)
+AC_CHECK_J2SDKEE_ROOT
+J2SDKEE_ROOT=$ac_cv_j2sdkee_root
+J2SDKEE_CLASSES=$ac_cv_j2sdkee_classes
+if test "$ac_cv_j2sdkee_root" != "no"; then
+    if test "x$PREFERRED_AS" = "" || 
+            test "x$PREFERRED_AS" = "xJ2SDKEE"; then
+        EJB_CLASSES=$ac_cv_j2sdkee_classes
+        AS_SERVER="J2SDKEE"
+        AS_SERVER_ROOT=$ac_cv_j2sdkee_root
+    fi
+else
+    echo "--> Hint: Use configure's --with-j2sdkee=<DIR> parameter."
+fi
+AC_SUBST(J2SDKEE_ROOT)
+AC_SUBST(J2SDKEE_CLASSES)
+
+#
+# JBoss.
+#
+AC_ARG_WITH(jboss,
+[  --with-jboss=<DIR>      set the JBoss root directory (guessed)],
+[
+    ac_cv_jboss_root=${withval}
+    PREFERRED_AS=JBoss
+],)
+AC_CHECK_JBOSS_ROOT
+JBOSS_ROOT=$ac_cv_jboss_root
+JBOSS_CLASSES=$ac_cv_jboss_classes
+if test "$ac_cv_jboss_root" != "no"; then
+    if test "x$PREFERRED_AS" = "" || 
+            test "x$PREFERRED_AS" = "xJBoss"; then
+        EJB_CLASSES=$ac_cv_jboss_classes
+        AS_SERVER="JBoss"
+        AS_SERVER_ROOT=$ac_cv_jboss_root
+    fi
+else
+    echo "--> Hint: Use configure's --with-jboss=<DIR> parameter."
+fi
+AC_SUBST(JBOSS_ROOT)
+AC_SUBST(JBOSS_CLASSES)
+
+#
+# BEA Weblogic.
+#
+AC_ARG_WITH(weblogic,
+[  --with-weblogic=<DIR>   set the BEA Weblogic root directory (guessed)],
+[
+    ac_cv_weblogic_root=${withval}
+    PREFERRED_AS=Weblogic
+],)
+AC_CHECK_WEBLOGIC_ROOT
+WEBLOGIC_ROOT=$ac_cv_weblogic_root
+WEBLOGIC_CLASSES=$ac_cv_weblogic_classes
+if test "$ac_cv_weblogic_root" != "no"; then
+    if test "x$PREFERRED_AS" = "" || 
+            test "x$PREFERRED_AS" = "xWeblogic"; then
+        EJB_CLASSES=$ac_cv_weblogic_classes
+        AS_SERVER="Weblogic"
+        AS_SERVER_ROOT=$ac_cv_weblogic_root
+    fi
+else
+    echo "--> Hint: Use configure's --with-weblogic=<DIR> parameter."
+fi
+AC_SUBST(WEBLOGIC_ROOT)
+AC_SUBST(WEBLOGIC_CLASSES)
+
+#
+# ATG Dynamo.
+#
+AC_ARG_WITH(dynamo,
+[  --with-dynamo=<DIR>     set the ATG Dynamo root directory (guessed)],
+[
+    ac_cv_dynamo_root=${withval}
+    PREFERRED_AS=Dynamo
+],)
+AC_CHECK_DYNAMO_ROOT
+DYNAMO_ROOT=$ac_cv_dynamo_root
+if test "$ac_cv_dynamo_root" != "no"; then
+    if test "x$PREFERRED_AS" = "" || 
+            test "x$PREFERRED_AS" = "xDynamo"; then
+        EJB_CLASSES=$ac_cv_dynamo_classes
+        AS_SERVER="Dynamo"
+        AS_SERVER_ROOT=$ac_cv_dynamo_root
+    fi
+else
+    echo "--> Hint: Use configure's --with-dynamo=<DIR> parameter."
+fi
+AC_SUBST(DYNAMO_ROOT)
+AC_SUBST(DYNAMO_CLASSES)
+
+#
+# Orion Server.
+#
+AC_ARG_WITH(orion,
+[  --with-orion=<DIR>      set the Orion Server root directory (guessed)],
+[
+    ac_cv_orion_root=${withval}
+    PREFERRED_AS=Orion
+],)
+AC_CHECK_ORION_ROOT
+ORION_ROOT=$ac_cv_orion_root
+if test "$ac_cv_orion_root" != "no"; then
+    if test "x$PREFERRED_AS" = "" || 
+            test "x$PREFERRED_AS" = "xOrion"; then
+        EJB_CLASSES=$ac_cv_orion_classes
+        AS_SERVER="Orion"
+        AS_SERVER_ROOT=$ac_cv_orion_root
+    fi
+else
+    echo "--> Hint: Use configure's --with-orion=<DIR> parameter."
+fi
+AC_SUBST(ORION_ROOT)
+AC_SUBST(ORION_CLASSES)
+
+#
+# JVM_PERF_FLAGS.
+#
+AC_ARG_WITH(perfFlags,
+[  --with-perfFlags="<flags>"  performance flags for the JVM (empty)],
+[
+    JVM_PERF_FLAGS=${withval}
+],[
+    JVM_PERF_FLAGS=
+])
+
+if test "x$JVM_PERF_FLAGS" != "x"; then
+    echo "Using JVM performance flags: '$JVM_PERF_FLAGS'."
+fi
+AC_SUBST(JVM_PERF_FLAGS)
+
+
+# -----------------------------------------------------------------------
+echo "*** Using this application server for AS related benchmarks: $AS_SERVER."
+
+AC_OUTPUT(org/oobench/common/config.sh 
+        org/oobench/common/config.mk
+        org/oobench/common/ant.common.xml)

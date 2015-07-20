@@ -1,0 +1,29 @@
+OO Bench README
+================
+
+WHAT IS IT?
+===========
+
+Compares the speed of the same object-oriented tasks in several
+object-oriented languages.
+
+AIMS
+====
+
+- Simple, easy to understand, and easy to port.
+- Follow the idioms and best practices advised by each language as much
+  as possible.
+- Easy to look up how a particular problem is best solved in another
+  language.
+
+REMARKS 
+=======
+
+- Currently focus is on source code rather than on benchmark results,
+  since reviews of the benchmarks are yet due.
+
+
+READ ON
+=======
+
+Read on in doc/oobench.txt for more documentation.
